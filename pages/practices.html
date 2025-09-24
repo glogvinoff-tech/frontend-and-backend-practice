@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практики</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .contacts-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .contact-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .contact-desc {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="header">Хэдер</div>
+        <div class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
+                <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li>
+                <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="contacts-section">
+                <button class="back-button" type="button" onclick="history.back()">← Назад</button>
+
+                <h2 class="section-title">Мои заслуги</h2>
+
+                <div class="contact-card">
+                    <h3 class="contact-title">Победа на олимпиаде</h3>
+                    <p class="contact-desc">В 1998 году выйграл в международной олимпиаде по шахматам.</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3 class="contact-title">Амбассадор блинов</h3>
+                    <p class="contact-desc">На территории города Лермонтов было ликвидировано более 200 блинов в местной блинной лавке.</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3 class="contact-title">Победа на турнире</h3>
+                    <p class="contact-desc">Выиграл на турнире по CS.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">Футер</div>
+    </div>
+</body>
+
+</html>
