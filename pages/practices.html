@@ -7,6 +7,13 @@
     <title>Практики</title>
     <link rel="stylesheet" href="../style/style.css">
     <style>
+        /* Убираем градиентный фон для body */
+        body {
+            background: white;
+            margin: 0;
+            padding: 0;
+        }
+        
         .contacts-section {
             max-width: 900px;
             margin: 0 auto;
@@ -67,17 +74,32 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-wrap: wrap;
+            }
+            
+            .news-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
     <div class="page-container">
-        <div class="header">Хэдер</div>
+        <div class="header main-heading">Практики</div>
         <div class="nav">
             <ul class="nav-list">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
                 <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
-                <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li>
+                <li class="nav-item"><a class="nav-link" href="practices.html" style="background: rgba(255,255,255,0.2);">Практики</a></li>
                 <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
                 <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
             </ul>
@@ -86,25 +108,27 @@
             <div class="contacts-section">
                 <button class="back-button" type="button" onclick="history.back()">← Назад</button>
 
-                <h2 class="section-title">Мои заслуги</h2>
+                <h2 class="section-title main-heading">Мои заслуги</h2>
 
-                <div class="contact-card">
-                    <h3 class="contact-title">Победа на олимпиаде</h3>
-                    <p class="contact-desc">В 1998 году выйграл в международной олимпиаде по шахматам.</p>
+                <div class="contact-card product-card">
+                    <h3 class="contact-title sub-heading">Победа на олимпиаде</h3>
+                    <p class="contact-desc text-paragraph">В 1998 году выйграл в международной олимпиаде по шахматам.</p>
                 </div>
 
-                <div class="contact-card">
-                    <h3 class="contact-title">Амбассадор блинов</h3>
-                    <p class="contact-desc">На территории города Лермонтов было ликвидировано более 200 блинов в местной блинной лавке.</p>
+                <div class="contact-card product-card highlight">
+                    <h3 class="contact-title sub-heading">Амбассадор блинов</h3>
+                    <p class="contact-desc text-paragraph">На территории города Лермонтов было ликвидировано более 200 блинов в местной блинной лавке.</p>
                 </div>
 
-                <div class="contact-card">
-                    <h3 class="contact-title">Победа на турнире</h3>
-                    <p class="contact-desc">Выиграл на турнире по CS.</p>
+                <div class="contact-card product-card featured-card">
+                    <h3 class="contact-title sub-heading">Победа на турнире</h3>
+                    <p class="contact-desc text-paragraph">Выиграл на турнире по CS.</p>
                 </div>
             </div>
         </div>
-        <div class="footer">Футер</div>
+        <div class="footer">
+            <p class="text-paragraph">© 2024 Все права защищены</p>
+        </div>
     </div>
 </body>
 

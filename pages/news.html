@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новости</title>
-    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
+        /* Убираем градиентный фон для body */
+        body {
+            background: white;
+            margin: 0;
+            padding: 0;
+        }
+
         /* ===== БАЗОВЫЕ СТИЛИ ===== */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
 
@@ -206,10 +212,11 @@
             }
         }
     </style>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="page-container">
-        <div class="header">Новости</div>
+        <div class="header main-heading">Новости</div>
         
         <div class="nav">
             <ul class="nav-list">
@@ -247,7 +254,7 @@
         </div>
         
         <div class="footer">
-            <p>Футер</p>
+            <p class="text-paragraph">© 2024 Все права защищены</p>
         </div>
     </div>
 

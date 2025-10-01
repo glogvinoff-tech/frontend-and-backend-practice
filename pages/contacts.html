@@ -6,73 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <style>
-        .contacts-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px;
+    /* Убираем градиентный фон для body */
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+    @media (max-width: 768px) {
+            .nav-list {
+                flex-wrap: wrap;
+            }
+            
+            .news-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
         }
-        
-        .section-title {
-            font-size: 32px;
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-        
-        .contact-card {
-            background: white;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-card:hover {
-            transform: translateX(5px);
-        }
-        
-        .contact-title {
-            font-size: 20px;
-            color: #2c3e50;
-            margin: 0 0 10px 0;
-            font-weight: 600;
-        }
-        
-        .contact-desc {
-            color: #7f8c8d;
-            line-height: 1.6;
-            margin: 0;
-        }
-        
-        .back-button {
-            display: inline-block;
-            margin-bottom: 30px;
-            padding: 12px 25px;
-            font-size: 16px;
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-    </style>
+</style>
 </head>
-
 <body>
     <div class="page-container">
-        <div class="header">Хэдер</div>
+        <div class="header main-heading">Контакты</div>
         <div class="nav">
             <ul class="nav-list">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
@@ -86,20 +46,34 @@
             <div class="contacts-section">
                 <button class="back-button" type="button" onclick="history.back()">← Назад</button>
 
-                <h2 class="section-title">Наши контакты</h2>
+                <h2 class="section-title main-heading">Наши контакты</h2>
+                
+                <p class="lead-paragraph text-paragraph">Свяжитесь со мной любым удобным способом. Я всегда открыт для новых проектов и сотрудничества!</p>
 
-                <div class="contact-card">
-                    <h3 class="contact-title">Рабочий контакт</h3>
-                    <p class="contact-desc">Логвинов Глеб Дмитриевич +7-928-845-82-84</p>
+                <div class="contact-card product-card">
+                    <h3 class="contact-title sub-heading">📞 Рабочий контакт</h3>
+                    <p class="contact-desc text-paragraph">Логвинов Глеб Дмитриевич</p>
+                    <p class="contact-desc lead-paragraph">+7-928-845-82-84</p>
+                    <p class="small-paragraph">Доступен с 9:00 до 18:00 по московскому времени</p>
                 </div>
 
-                <div class="contact-card">
-                    <h3 class="contact-title">Домашний контакт</h3>
-                    <p class="contact-desc">Логвинов Глеб Дмитриевич +7-024-442-52-54</p>
+                <div class="contact-card product-card highlight">
+                    <h3 class="contact-title sub-heading">🏠 Домашний контакт</h3>
+                    <p class="contact-desc text-paragraph">Логвинов Глеб Дмитриевич</p>
+                    <p class="contact-desc lead-paragraph">+7-024-442-52-54</p>
+                    <p class="small-paragraph">Для срочных вопросов в нерабочее время</p>
+                </div>
+
+                <div class="contact-card product-card featured-card">
+                    <h3 class="contact-title sub-heading">✉️ Электронная почта</h3>
+                    <p class="contact-desc lead-paragraph">g.logvinov@example.com</p>
+                    <p class="contact-desc text-paragraph">Основной способ для деловой переписки</p>
                 </div>
             </div>
         </div>
-        <div class="footer">Футер</div>
+        <div class="footer">
+            <p class="text-paragraph">© 2024 Все права защищены</p>
+        </div>
     </div>
 </body>
 

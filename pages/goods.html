@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Товары</title>
-  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
     /* ===== БАЗОВЫЕ СТИЛИ ===== */
     body {
@@ -96,9 +96,14 @@
       box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     /* ===== СПИСОК ТОВАРОВ ===== */
@@ -127,16 +132,18 @@
     .product img {
       width: 100%;
       height: 200px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 10px;
       margin-bottom: 15px;
       border: 2px solid #f0f0f0;
+      background: #f8f9fa;
+      padding: 10px;
     }
 
     .product h3 {
       margin: 0 0 15px 0;
       font-size: 18px;
-      height: 50px;
+      min-height: 50px;
       overflow: hidden;
       font-weight: 600;
       line-height: 1.4;
@@ -166,12 +173,98 @@
       box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
     }
 
-    /* ===== СООБЩЕНИЕ О ЗАГРУЗКЕ ===== */
+    /* ===== СКЕЛЕТОНЫ ЗАГРУЗКИ ===== */
+    .skeleton-loading {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .skeleton-product {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .skeleton-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    .skeleton-text {
+      height: 20px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .skeleton-text.short {
+      width: 60%;
+      margin: 0 auto 10px;
+    }
+
+    .skeleton-text.medium {
+      width: 80%;
+    }
+
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* ===== СТАТУС КОРЗИНЫ ===== */
+    .cart-status {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+      z-index: 1000;
+    }
+
+    /* ===== СООБЩЕНИЯ ===== */
     .loading-message {
       text-align: center;
       font-size: 18px;
       color: #2c3e50;
       padding: 40px 0;
+    }
+
+    .error-message {
+      text-align: center;
+      color: #e74c3c;
+      padding: 20px;
+      background: #ffeaea;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 1px solid #e74c3c;
+    }
+
+    .success-message {
+      text-align: center;
+      color: #27ae60;
+      padding: 20px;
+      background: #e8f6ef;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 1px solid #27ae60;
     }
 
     /* ===== ФУТЕР ===== */
@@ -189,7 +282,7 @@
         flex-wrap: wrap;
       }
       
-      .products-list {
+      .products-list, .skeleton-loading {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       }
       
@@ -197,8 +290,20 @@
         flex-direction: column;
         align-items: center;
       }
+      
+      .cart-status {
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+      }
+      {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
     }
   </style>
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div class="page-container">
@@ -206,7 +311,7 @@
     
     <div class="nav">
       <ul class="nav-list">
-        <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
         <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
         <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li>
         <li class="nav-item"><a class="nav-link" href="goods.html" style="background: rgba(255,255,255,0.2);">Товары</a></li>
@@ -216,21 +321,66 @@
     
     <div class="content">
       <div id="app">
+        <!-- Статус корзины -->
+        <div v-if="cartCount > 0" class="cart-status">
+          🛒 {{ cartCount }} товар(ов)
+        </div>
+
         <div class="buttons">
-          <button @click="loadProducts">Обновить товары</button>
+          <button @click="loadProducts" :disabled="loading">
+            {{ loading ? 'Загрузка...' : 'Обновить товары' }}
+          </button>
+          <button @click="loadProductsFromCache" :disabled="loading">
+            Из кэша
+          </button>
           <button @click="goBack">Назад</button>
         </div>
 
-        <div v-if="products.length" class="products-list">
-          <div v-for="product in products" :key="product.id" class="product">
-            <img :src="product.image" :alt="product.name">
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.price }} $</p>
-            <a href="#" @click.prevent="addToCart(product)">В корзину</a>
+        <!-- Сообщение об ошибке -->
+        <div v-if="error" class="error-message">
+          {{ error }}
+          <br>
+          <button @click="loadProductsFromCache" style="margin-top: 10px; padding: 8px 16px;">
+            Попробовать загрузить из кэша
+          </button>
+        </div>
+
+        <!-- Сообщение об успехе -->
+        <div v-if="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+
+        <!-- Скелетоны загрузки -->
+        <div v-if="loading && products.length === 0" class="skeleton-loading">
+          <div v-for="n in 8" :key="n" class="skeleton-product">
+            <div class="skeleton-image"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-text medium"></div>
           </div>
         </div>
+
+        <!-- Список товаров -->
+        <div v-else-if="products.length" class="products-list">
+          <div v-for="product in products" :key="product.id" class="product">
+            <img 
+              :src="product.image" 
+              :alt="product.name"
+              @load="onImageLoad(product.id)"
+              @error="onImageError(product.id)"
+              loading="lazy"
+            >
+            <h3>{{ product.name }}</h3>
+            <p>{{ formatPrice(product.price) }}</p>
+            <a href="#" @click.prevent="addToCart(product)">
+              {{ product.addingToCart ? 'Добавляется...' : 'В корзину' }}
+            </a>
+          </div>
+        </div>
+        
+        <!-- Сообщение о загрузке -->
         <div v-else class="loading-message">
-          <p>Загрузка товаров...</p>
+          <p>Товары не загружены. Нажмите "Обновить товары"</p>
         </div>
       </div>
     </div>
@@ -241,51 +391,224 @@
   </div>
 
   <script>
-    const app = Vue.createApp({
+    const { createApp } = Vue;
+    
+    createApp({
       data() {
         return {
           products: [],
-          cartCount: 0
+          cartCount: 0,
+          loading: false,
+          error: null,
+          successMessage: null
         }
       },
       methods: {
         async loadProducts() {
+          this.loading = true;
+          this.error = null;
+          this.successMessage = null;
+          
           try {
-            const response = await fetch('https://fakestoreapi.com/products?limit=12');
+            console.log('Начало загрузки товаров...');
+            
+            // Используем более стабильный endpoint
+            const response = await fetch('https://fakestoreapi.com/products?limit=8');
+            
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const data = await response.json();
+            console.log('Данные получены:', data);
 
-            // Перемешиваем товары для рандома
-            this.products = this.shuffleArray(data).map(item => ({
+            if (!data || data.length === 0) {
+              throw new Error('Получен пустой список товаров');
+            }
+
+            // Обрабатываем данные
+            const processedProducts = this.shuffleArray(data).map(item => ({
               id: item.id,
-              name: item.title.length > 50 ? item.title.substring(0, 50) + '...' : item.title,
+              name: item.title && item.title.length > 50 ? item.title.substring(0, 50) + '...' : item.title,
               price: item.price,
-              image: item.image
+              image: item.image,
+              imageLoaded: false,
+              addingToCart: false
             }));
+
+            this.products = processedProducts;
+            this.cacheProducts(processedProducts);
+            this.successMessage = `Загружено ${processedProducts.length} товаров`;
+            
           } catch (err) {
             console.error("Ошибка при загрузке товаров:", err);
+            this.error = 'Не удалось загрузить товары. ' + err.message;
+            
+            // Пробуем загрузить из кэша
+            const cached = this.getCachedProducts();
+            if (cached.length > 0) {
+              this.products = cached;
+              this.error += ' Показаны кэшированные данные.';
+            }
+          } finally {
+            this.loading = false;
           }
         },
+
+        loadProductsFromCache() {
+          const cachedProducts = this.getCachedProducts();
+          if (cachedProducts.length > 0) {
+            this.products = cachedProducts;
+            this.successMessage = `Загружено ${cachedProducts.length} товаров из кэша`;
+            this.error = null;
+          } else {
+            this.error = 'В кэше нет данных. Сначала загрузите товары.';
+          }
+        },
+
         shuffleArray(array) {
-          for (let i = array.length - 1; i > 0; i--) {
+          const newArray = [...array];
+          for (let i = newArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
           }
-          return array;
+          return newArray;
         },
+
+        cacheProducts(products) {
+          try {
+            localStorage.setItem('cachedProducts', JSON.stringify({
+              data: products,
+              timestamp: Date.now()
+            }));
+            console.log('Данные сохранены в кэш');
+          } catch (e) {
+            console.warn('Не удалось сохранить в кэш:', e);
+          }
+        },
+
+        getCachedProducts() {
+          try {
+            const cached = localStorage.getItem('cachedProducts');
+            if (cached) {
+              const { data, timestamp } = JSON.parse(cached);
+              // Используем кэш только если он свежее 24 часов
+              if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
+                console.log('Загружены данные из кэша');
+                return data.map(item => ({
+                  ...item,
+                  imageLoaded: false,
+                  addingToCart: false
+                }));
+              }
+            }
+          } catch (e) {
+            console.warn('Ошибка чтения кэша:', e);
+          }
+          return [];
+        },
+
+        onImageLoad(productId) {
+          const product = this.products.find(p => p.id === productId);
+          if (product) {
+            product.imageLoaded = true;
+          }
+        },
+
+        onImageError(productId) {
+          const product = this.products.find(p => p.id === productId);
+          if (product) {
+            // Используем placeholder изображение
+            product.image = 'https://via.placeholder.com/300x200/667eea/ffffff?text=No+Image';
+            product.imageLoaded = true;
+          }
+        },
+
+        formatPrice(price) {
+          return new Intl.NumberFormat('ru-RU', {
+            style: 'currency',
+            currency: 'USD'
+          }).format(price);
+        },
+
+        async addToCart(product) {
+          if (product.addingToCart) return;
+          
+          product.addingToCart = true;
+          
+          // Имитация задержки добавления в корзину
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          this.cartCount++;
+          product.addingToCart = false;
+          
+          this.showNotification(`Товар "${product.name}" добавлен в корзину!`);
+        },
+
+        showNotification(message) {
+          // Создаем временное уведомление
+          const notification = document.createElement('div');
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            z-index: 1000;
+            font-weight: 500;
+          `;
+          notification.textContent = message;
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 3000);
+        },
+
         goBack() {
           window.history.back();
-        },
-        addToCart(product) {
-          this.cartCount++;
-          alert(`Товар "${product.name}" добавлен в корзину!`);
         }
       },
       mounted() {
-        this.loadProducts(); // Загружаем товары при загрузке страницы
-      }
-    });
+        console.log('Компонент монтирован');
+        
+        // Восстанавливаем счетчик корзины из localStorage
+        try {
+          const savedCartCount = localStorage.getItem('cartCount');
+          if (savedCartCount) {
+            this.cartCount = parseInt(savedCartCount);
+          }
+        } catch (e) {
+          console.warn('Не удалось восстановить корзину:', e);
+        }
 
-    app.mount('#app');
+        // Пытаемся загрузить из кэша при загрузке страницы
+        const cachedProducts = this.getCachedProducts();
+        if (cachedProducts.length > 0) {
+          this.products = cachedProducts;
+          this.successMessage = 'Загружены кэшированные товары';
+        } else {
+          // Если кэша нет, загружаем с сервера
+          this.loadProducts();
+        }
+      },
+      watch: {
+        cartCount(newCount) {
+          // Сохраняем счетчик корзины в localStorage
+          try {
+            localStorage.setItem('cartCount', newCount.toString());
+          } catch (e) {
+            console.warn('Не удалось сохранить корзину:', e);
+          }
+        }
+      }
+    }).mount('#app');
   </script>
 </body>
 </html>

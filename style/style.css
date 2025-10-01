@@ -1,301 +1,352 @@
 /* ===== БАЗОВЫЕ СТИЛИ ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Современный
-шрифт для лучшей читаемости */
     margin: 0;
-    /* Убираем стандартные отступы браузера */
     padding: 0;
-    /* Убираем стандартные внутренние отступы */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    /* Красивый
-градиентный фон всей страницы */
     min-height: 100vh;
-    /* Минимальная высота равна высоте окна браузера */
 }
 
 /* ===== КОНТЕЙНЕР СТРАНИЦЫ ===== */
 .page-container {
     max-width: 1200px;
-    /* Максимальная ширина контента */
     margin: 0 auto;
-    /* Центрирование контейнера по горизонтали */
     background: white;
-    /* Белый фон для основного содержимого */
     min-height: 100vh;
-    /* Минимальная высота равна высоте окна браузера */
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    /* Легкая тень вокруг всего контента */
+}
+
+/* ===== НОВЫЕ КЛАССЫ ДЛЯ ЗАГОЛОВКОВ ===== */
+.main-heading {
+    font-size: 32px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.sub-heading {
+    font-size: 24px;
+    color: #34495e;
+    margin: 15px 0;
+    font-weight: 500;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 8px;
+}
+
+.section-heading {
+    font-size: 28px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* ===== НОВЫЕ КЛАССЫ ДЛЯ ПАРАГРАФОВ ===== */
+.text-paragraph {
+    color: #7f8c8d;
+    line-height: 1.7;
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: justify;
+    padding: 0 10px;
+}
+
+.lead-paragraph {
+    font-size: 18px;
+    color: #2c3e50;
+    line-height: 1.6;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+.small-paragraph {
+    font-size: 14px;
+    color: #95a5a6;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* ===== НОВЫЕ КЛАССЫ ДЛЯ КАРТОЧЕК ТОВАРОВ ===== */
+.product-card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-left-color: #4facfe;
+}
+
+.featured-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-left: 4px solid #ff6b6b;
+    position: relative;
+}
+
+.featured-card::before {
+    content: "🔥";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+}
+
+/* ===== КЛАСС ДЛЯ ВЫДЕЛЕНИЯ ===== */
+.highlight {
+    background: linear-gradient(135deg, #fff9c4 0%, #f5f5f5 100%);
+    border-left: 4px solid #ffeb3b !important;
+}
+
+.accent-border {
+    border: 2px solid #667eea;
+    border-radius: 10px;
+}
+
+/* ===== ПСЕВДОКЛАССЫ ДЛЯ ИНТЕРАКТИВНОСТИ ===== */
+.product-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.skill-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+.skill-tag:active {
+    transform: translateY(-1px);
+}
+
+/* Новые псевдоклассы для карточек */
+.contact-card:hover {
+    transform: translateX(5px);
+}
+
+.contact-card:active {
+    transform: translateX(2px);
 }
 
 /* ===== ШАПКА ===== */
 .header {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    /* Темный
-градиентный фон */
     color: white;
-    /* Белый цвет текста */
     text-align: center;
-    /* Выравнивание текста по центру */
     padding: 30px;
-    /* Внутренние отступы со всех сторон */
     font-size: 28px;
-    /* Размер шрифта */
     font-weight: 300;
-    /* Легкое начертание шрифта */
     letter-spacing: 2px;
-    /* Расстояние между буквами */
 }
 
 /* ===== НАВИГАЦИЯ ===== */
 .nav {
     background: #2c3e50;
-    /* Темно-синий фон навигации */
     padding: 20px 0;
-    /* Вертикальные отступы */
 }
 
 .nav-list {
     list-style: none;
-    /* Убираем маркеры списка */
     margin: 0;
-    /* Убираем внешние отступы */
     padding: 0;
-    /* Убираем внутренние отступы */
     display: flex;
-    /* Горизонтальное расположение элементов */
     justify-content: center;
-    /* Выравнивание по центру */
     gap: 25px;
-    /* Расстояние между элементами навигации */
 }
 
 .nav-item {
     margin: 0;
-    /* Убираем отступы у пунктов меню */
 }
 
 .nav-link {
     color: white;
-    /* Белый цвет текста ссылок */
     text-decoration: none;
-    /* Убираем подчеркивание ссылок */
     padding: 12px 25px;
-    /* Отступы внутри ссылок */
     border-radius: 25px;
-    /* Скругленные углы (капсульная форма) */
     transition: all 0.3s ease;
-    /* Плавные анимации при изменении */
     font-weight: 500;
-    /* Средняя жирность шрифта */
-}
-
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    /* Полупрозрачный белый фон при наведении
-*/
-    transform: translateY(-2px);
-    /* Легкое поднятие элемента при наведении */
 }
 
 /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
 .content {
     padding: 40px;
-    /* Внутренние отступы контента */
     max-width: 900px;
-    /* Максимальная ширина контента */
     margin: 0 auto;
-    /* Центрирование контента */
 }
 
 /* ===== ГЛАВНАЯ СТРАНИЦА ===== */
 .profile-header {
     text-align: center;
-    /* Выравнивание по центру */
     margin-bottom: 40px;
-    /* Отступ снизу */
 }
 
 .profile-title {
     font-size: 32px;
-    /* Размер шрифта заголовка */
     color: #2c3e50;
-    /* Темно-синий цвет текста */
     margin-bottom: 10px;
-    /* Отступ снизу */
     font-weight: 300;
-    /* Легкое начертание шрифта */
 }
 
 .profile-photo {
     width: 220px;
-    /* Фиксированная ширина фото */
     height: 280px;
-    /* Фиксированная высота фото */
     border-radius: 15px;
-    /* Скругленные углы фото */
     object-fit: cover;
-    /* Обрезка фото для сохранения пропорций */
     margin: 20px auto;
-    /* Центрирование и отступы */
     border: 4px solid #667eea;
-    /* Синяя рамка вокруг фото */
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-    /* Тень с синим оттенком */
 }
 
 .profile-name {
     font-size: 24px;
-    /* Размер шрифта имени */
     color: #2c3e50;
-    /* Темно-синий цвет текста */
     margin: 10px 0;
-    /* Вертикальные отступы */
     font-weight: 500;
-    /* Средняя жирность шрифта */
 }
 
 .profile-group {
     font-size: 18px;
-    /* Размер шрифта группы */
     color: #7f8c8d;
-    /* Серый цвет текста */
     margin: 5px 0;
-    /* Вертикальные отступы */
 }
 
 .about-me {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    /* Светлый
-градиентный фон */
     padding: 25px;
-    /* Внутренние отступы */
     border-radius: 15px;
-    /* Скругленные углы */
     margin: 30px 0;
-    /* Вертикальные отступы */
     border-left: 5px solid #667eea;
-    /* Синяя полоса слева */
     font-size: 16px;
-    /* Размер шрифта текста */
     line-height: 1.8;
-    /* Межстрочный интервал */
 }
 
 /* ===== НАВЫКИ ===== */
 .skills-container {
     display: flex;
-    /* Горизонтальное расположение навыков */
     justify-content: center;
-    /* Выравнивание по центру */
     flex-wrap: wrap;
-    /* Перенос на новую строку при необходимости */
     gap: 15px;
-    /* Расстояние между навыками */
     margin: 30px 0;
-    /* Вертикальные отступы */
 }
 
 .skill-tag {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    /* Голубой
-градиентный фон */
     color: white;
-    /* Белый цвет текста */
     padding: 12px 25px;
-    /* Внутренние отступы */
     border-radius: 25px;
-    /* Круглые углы (капсульная форма) */
     font-weight: 600;
-    /* Жирный шрифт */
     font-size: 14px;
-    /* Размер шрифта */
     box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-    /* Тень с голубым оттенком */
     transition: all 0.3s ease;
-    /* Плавные анимации при изменении */
-}
-
-.skill-tag:hover {
-    transform: translateY(-3px);
-    /* Поднятие элемента при наведении */
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
-    /* Увеличение тени при
-наведении */
 }
 
 /* ===== ОПЫТ РАБОТЫ ===== */
 .experience-section {
     margin-top: 50px;
-    /* Отступ сверху */
 }
 
 .section-title {
     font-size: 28px;
-    /* Размер шрифта заголовка секции */
     color: #2c3e50;
-    /* Темно-синий цвет текста */
     text-align: center;
-    /* Выравнивание по центру */
     margin-bottom: 30px;
-    /* Отступ снизу */
     font-weight: 300;
-    /* Легкое начертание шрифта */
 }
 
 .experience-card {
     background: white;
-    /* Белый фон карточки */
     padding: 25px;
-    /* Внутренние отступы */
     margin: 20px 0;
-    /* Вертикальные отступы */
     border-radius: 12px;
-    /* Скругленные углы */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    /* Легкая тень */
     border-left: 4px solid #667eea;
-    /* Синяя полоса слева */
     transition: transform 0.3s ease;
-    /* Плавная анимация трансформации */
-}
-
-.experience-card:hover {
-    transform: translateX(5px);
-    /* Сдвиг вправо при наведении */
 }
 
 .experience-title {
     font-size: 20px;
-    /* Размер шрифта заголовка опыта */
     color: #2c3e50;
-    /* Темно-синий цвет текста */
     margin: 0 0 10px 0;
-    /* Отступ снизу */
     font-weight: 600;
-    /* Жирный шрифт */
 }
 
 .experience-desc {
     color: #7f8c8d;
-    /* Серый цвет текста */
     line-height: 1.6;
-    /* Межстрочный интервал */
     margin: 0;
-    /* Убираем отступы */
 }
 
 /* ===== ФУТЕР ===== */
 .footer {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    /* Темный
-градиентный фон */
     color: white;
-    /* Белый цвет текста */
     text-align: center;
-    /* Выравнивание по центру */
     padding: 30px;
-    /* Внутренние отступы */
     margin-top: 50px;
-    /* Отступ сверху */
+}
+
+/* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ КОНТАКТОВ ===== */
+.contacts-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.contact-card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #667eea;
+    transition: transform 0.3s ease;
+}
+
+.contact-title {
+    font-size: 20px;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.contact-desc {
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }

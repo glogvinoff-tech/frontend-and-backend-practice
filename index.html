@@ -6,11 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Семестровая работа</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <style>
+        /* Убираем градиентный фон для body */
+        body {
+            background: white;
+            margin: 0;
+            padding: 0;
+        }
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-wrap: wrap;
+            }
+            
+            .news-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="page-container">
-        <div class="header">Хэдер</div>
+        <div class="header main-heading">Портфолио разработчика</div>
         <div class="nav">
             <ul class="nav-list">
                 <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
@@ -22,42 +45,51 @@
         </div>
         <div class="content">
             <div class="profile-header">
-                <h1 class="profile-title">Информация об авторе</h1>
-                <img class="profile-photo" src="images/ff.png" alt="Фото
-автора">
-                <h2 class="profile-name">Логвинов Глеб Дмитриевич</h2>
-                <p class="profile-group">ЭФБО-14-24</p>
+                <h1 class="profile-title main-heading">Информация об авторе</h1>
+                <img class="profile-photo accent-border" src="images/ff.png" alt="Фото автора">
+                <h2 class="profile-name sub-heading">Логвинов Глеб Дмитриевич</h2>
+                <p class="profile-group text-paragraph">ЭФБО-14-24</p>
             </div>
 
             <div class="about-me">
-                <p>Обо мне: Я родился в Лермонтове. Рос в gangsta rayon среди чотких boys./p>
+                <p class="lead-paragraph">Добро пожаловать на мою персональную страницу!</p>
+                <p class="text-paragraph">Обо мне: Я родился в Лермонтове. Рос в gangsta rayon среди чотких boys.</p>
+                <p class="small-paragraph">Начинающий фронтенд-разработчик с passion к созданию красивых и функциональных интерфейсов.</p>
             </div>
 
             <div class="skills-container">
-                <div class="skill-tag">Умный</div>
-                <div class="skill-tag">не</div>
-                <div class="skill-tag">очень</div>
-                <div class="skill-tag">:с</div>
+                <div class="skill-tag">HTML5</div>
+                <div class="skill-tag">CSS3</div>
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">Vue.js</div>
+                <div class="skill-tag">Адаптивная верстка</div>
             </div>
 
             <div class="experience-section">
-                <h2 class="section-title">Мой опыт работы</h2>
-                <div class="experience-card">
-                    <h3 class="experience-title">Опыт 1</h3>
-                    <p class="experience-desc">6666 часов в Unturned.</p>
+                <h2 class="section-title main-heading">Мой опыт работы</h2>
+                
+                <div class="experience-card product-card">
+                    <h3 class="experience-title sub-heading">Опыт 1 - Геймдев</h3>
+                    <p class="experience-desc text-paragraph">6666 часов в Unturned. Глубокое понимание игровых механик и баланса.</p>
+                    <p class="small-paragraph">Достижение: Создал несколько популярных модификаций</p>
                 </div>
-                <div class="experience-card">
-                    <h3 class="experience-title">Опыт 2</h3>
-                    <p class="experience-desc">Маппинг.</p>
+                
+                <div class="experience-card product-card highlight featured-card">
+                    <h3 class="experience-title sub-heading">Опыт 2 - Маппинг</h3>
+                    <p class="experience-desc text-paragraph">Профессиональное создание карт для различных игровых проектов.</p>
+                    <p class="small-paragraph">Специализация: 3D-моделирование и текстурирование</p>
                 </div>
-                <div class="experience-card">
-                    <h3 class="experience-title">Опыт 3</h3>
-                    <p class="experience-desc">До сих пор живой.
-                    </p>
+                
+                <div class="experience-card product-card">
+                    <h3 class="experience-title sub-heading">Опыт 3 - Веб-разработка</h3>
+                    <p class="experience-desc text-paragraph">До сих пор живой и активно развиваюсь в области фронтенд разработки.</p>
+                    <p class="small-paragraph">Текущий стек: Vue.js, CSS3, HTML5</p>
                 </div>
             </div>
         </div>
-        <div class="footer">Футер</div>
+        <div class="footer">
+            <p class="text-paragraph">© 2024 Портфолио Логвинова Глеба. Все права защищены.</p>
+        </div>
     </div>
 </body>
 
